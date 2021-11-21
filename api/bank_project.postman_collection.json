@@ -1,0 +1,697 @@
+{
+	"info": {
+		"_postman_id": "6556962a-2a3f-43a0-ac2f-5e4d47ce1cd0",
+		"name": "bank_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "GetCustomers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Matti Meikäläinen",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "666 HellSinki",
+									"type": "text"
+								},
+								{
+									"key": "phonenumber",
+									"value": "55566601",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/customer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCustomer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customer/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customer/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCustomer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Maija Meikäläinen",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "666 HellSinki",
+									"type": "text"
+								},
+								{
+									"key": "phonenumber",
+									"value": "55566600",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/customers/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "GetTransactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddTransaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "transaction",
+									"value": "NOSTO",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "500",
+									"type": "text"
+								},
+								{
+									"key": "idAccount",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTransaction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneTransaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateTransaction",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "transaction",
+									"value": "NOSTO",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "idAccount",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/transaction/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transaction",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "GetAccounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/account",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountnumber",
+									"value": "FI8000-1234-4321",
+									"type": "text"
+								},
+								{
+									"key": "balance",
+									"value": "10000",
+									"type": "text"
+								},
+								{
+									"key": "creditlimit",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "iscredit",
+									"value": "N",
+									"type": "text"
+								},
+								{
+									"key": "idcustomer",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/account",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAccount",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/account/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneAccount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/account/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAccount",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "accountnumber",
+									"value": "FI8000-1234-4321",
+									"type": "text"
+								},
+								{
+									"key": "balance",
+									"value": "10000",
+									"type": "text"
+								},
+								{
+									"key": "creditlimit",
+									"value": "20000",
+									"type": "text"
+								},
+								{
+									"key": "iscredit",
+									"value": "Y",
+									"type": "text"
+								},
+								{
+									"key": "idcustomer",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/account/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account_Card",
+			"item": [
+				{
+					"name": "GetAccountCard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/account_card",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account_card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddAccountCard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idaccount",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "idcard",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/account_card",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account_card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAccountCard",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/account_card/2&3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account_card",
+								"2&3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "GetCards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/card",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddCard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cardid",
+									"value": "1234-1234",
+									"type": "text"
+								},
+								{
+									"key": "pin",
+									"value": "1122",
+									"type": "text"
+								},
+								{
+									"key": "idcustomer",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/card",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCard",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/card/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneCard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/card/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCard",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "cardid",
+									"value": "1234-4321",
+									"type": "text"
+								},
+								{
+									"key": "pin",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "idcustomer",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/card/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CheckPIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pin",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/card/checkpin/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card",
+								"checkpin",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "newPass",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "newAdmin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
