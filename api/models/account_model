@@ -1,0 +1,28 @@
+const db = require('../database');
+
+const account = {
+  getById: function(id, callback) {
+    return db.query('select * from account where idAccount=?', [id], callback);
+  },
+  getAll: function(callback) {
+    return db.query('select * from account', callback);
+  },
+  add: function(account, callback) {
+    return db.query(
+      'insert into account (AccountNumber,Balance,CreditLimit,isCredit,idCustomer) values(?,?,?,?,?)',
+      [account.accountnumber, account.balance, account.creditlimit, account.iscredit, account.idcustomer],
+      callback
+    );
+  },
+  delete: function(id, callback) {
+    return db.query('delete from account where idAccount=?', [id], callback);
+  },
+  update: function(id, account, callback) {
+    return db.query(
+      'update account set AccountNumber=?,Balance=?, CreditLimit=?, isCredit=?, idCustomer=? where idAccount=?',
+      [account.accountnumber, account.balance, account.creditlimit, account.iscredit, account.idcustomer, id],
+      callback
+    );
+  }
+};
+module.exports = account;
