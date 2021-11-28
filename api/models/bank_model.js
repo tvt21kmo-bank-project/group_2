@@ -2,16 +2,13 @@ const db = require('../database');
 //luodaan bank-niminen objekti
 //ja sen sisään tarvittavat funktiot
 const bank = {
-
-    debit: function(postData, callback){
-        return db.query('call debit_transfer(?,?,?)',
-        [postData.id1, postData.id2, postData.summa],
-        callback);
+    getPinCheckCredit: function(postData, callback) {
+        return db.query('call getPinCheckCredit(?)',
+        [postData.cardid],callback);
     },
-    credit: function(postData, callback){
-        return db.query('call credit_transfer(?,?,?)',
-        [postData.id1, postData.id2, postData.summa],
-        callback);
+    getAccount: function(postData, callback) {
+        return db.query('call getIdAccount(?,?)',
+        [postData.cardid, postData.iscredit],callback);
     }
 };
 //exportilla viedään ulos bank objekti
