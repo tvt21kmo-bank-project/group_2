@@ -53,4 +53,46 @@ function(request, response) {
     });
 });
 
+router.post('/withdrawMoney',
+function(request, response) {
+    bank.withdrawMoney(request.body, function(err, dbResult) {
+        if (err) {
+            response.json(err);
+        }
+        else
+        {
+            if(dbResult.length > 0 && dbResult[0].length > 0) {
+                console.log("Account linked to the card found. Result: " + dbResult[0][0]);
+                response.json(dbResult[0][0]);
+            }
+            else
+            {
+                console.log("Account did not found");
+                response.json({withdrawOK: 'N', message: 'Account did not found!'});
+            } 
+        }
+    })
+});
+
+router.get('/getTransactions/:idAccount&:page&:actionsPerPage',
+function(request, response) {
+    bank.getTransactions(request.params.idAccount, request.params.page, request.params.actionsPerPage, function(err, dbResult) {
+        if (err) {
+            response.json(err);
+        }
+        else
+        {
+            if(dbResult.length > 0 && dbResult[0].length > 0) {
+                console.log("Transactions found. Result: " + dbResult[0][0]);
+                response.json(dbResult[0]);
+            }
+            else
+            {
+                console.log("Transactions did not found");
+                response.json({message: 'Transactions did not found!'});
+            } 
+        }
+    })
+})
+
 module.exports = router;
