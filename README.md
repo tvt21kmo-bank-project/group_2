@@ -1,5 +1,6 @@
 # group_2
-branch: api_1;
+branch: api_2;
 creator: t0tumi01;
-REST-API crud operations for every table created;
-PostMan collection exported (api/bank_project.postman_collection.json).
+Two REST-API bank operations added,
+API.DOC added (draft),
+PostMan collection removed (is now cloud based)
