@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    api = new bank_api();
 }
 
 MainWindow::~MainWindow()
@@ -14,3 +15,8 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::on_funbtn8_clicked()
+{
+    bool isCredit = false;
+    bool test = api->checkPIN(ui->editCard->text(), ui->editPIN->text(), isCredit);
+}

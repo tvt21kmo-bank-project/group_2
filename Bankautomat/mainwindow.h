@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "bank_api.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,8 +19,12 @@ public:
 //private slots:
   //  void on_funbtn4_clicked();
 
+private slots:
+    void on_funbtn8_clicked();
+
 private:
     Ui::MainWindow *ui;
+    bank_api *api;
 };
 
 #endif // MAINWINDOW_H

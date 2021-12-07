@@ -1,7 +1,7 @@
 # group_2
-branch: api_3;
+branch: qt_api_client_2
 creator: t0tumi01;
-Last REST-API bank operations added,
+First real bank_api class method added
 
 
 Asiakkaita 3kpl
