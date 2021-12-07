@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     api = new bank_api();
+    ui->editCard->setFocus();
 }
 
 MainWindow::~MainWindow()
@@ -17,6 +18,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_funbtn8_clicked()
 {
-    bool isCredit = false;
-    bool test = api->checkPIN(ui->editCard->text(), ui->editPIN->text(), isCredit);
+    switch (ui->stackedWidget->currentIndex())
+    {
+        case 0:
+            bool isCredit = false;
+            bool isPINvalid = api->checkPIN(ui->editCard->text(), ui->editPIN->text(), isCredit);
+
+            if (isPINvalid)
+            {
+               if (isCredit)
+                  ui->stackedWidget->setCurrentIndex(1);
+               else
+                  ui->stackedWidget->setCurrentIndex(2);
+            }
+            break;
+    }
 }
