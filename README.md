@@ -6,7 +6,6 @@ Last REST-API bank operations added,
 
 Asiakkaita 3kpl
 
-id              pin
-1              1234
-2              2345
-3              3456
+id 1 / tili D 4567-4567 C 1234-1234 / pin 1111         
+id 2 / tili D 2345-2345 / pin 2222
+id 3 / tili D 3456-3456 / pin 3333

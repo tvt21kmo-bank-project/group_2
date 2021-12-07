@@ -32,7 +32,7 @@ CREATE TABLE `account` (
   PRIMARY KEY (`idAccount`),
   KEY `fk_Account_Customer1_idx` (`idCustomer`),
   CONSTRAINT `fk_Account_Customer1` FOREIGN KEY (`idCustomer`) REFERENCES `customer` (`idCustomer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'1234-1234',50000.00,50000.00,1,'Y'),(2,'2345-2345',48892.00,0.00,2,'N'),(3,'3456-3456',2294.00,0.00,3,'N'),(4,'4567-4567',9964.00,0.00,1,'N');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,6 +68,7 @@ CREATE TABLE `accountcard` (
 
 LOCK TABLES `accountcard` WRITE;
 /*!40000 ALTER TABLE `accountcard` DISABLE KEYS */;
+INSERT INTO `accountcard` VALUES (1,2),(1,2),(4,2);
 /*!40000 ALTER TABLE `accountcard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +87,7 @@ CREATE TABLE `card` (
   PRIMARY KEY (`idCard`),
   KEY `fk_Card_Customer_idx` (`idCustomer`),
   CONSTRAINT `fk_Card_Customer` FOREIGN KEY (`idCustomer`) REFERENCES `customer` (`idCustomer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +96,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
+INSERT INTO `card` VALUES (2,'1234-1234','$2a$10$ol4y82k1.zxpbbKzRaI19uAqa4UmRgG.Ullf4lW1E2fZ7EWQD/18m',1),(3,'2345-2345','$2a$10$qsMmJqSM3pOQkoIivGuVMuqbcNObN95SQIuSyoBtR8R98atrlo8xm',2),(4,'3456-3456','$2a$10$7KIQ6v2LhQoy7PcSJY.wzO8axomttH62ebde.JOY0MUrkZ5eA49yq',3),(6,'4567-4567','$2a$10$n2bY8rW1ulXhL6RrpKVcoeKoH4XjOEzOlCDCS8N6JU85JWjs98JGS',1);
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +113,7 @@ CREATE TABLE `customer` (
   `Address` varchar(45) NOT NULL,
   `PhoneNumber` varchar(45) NOT NULL,
   PRIMARY KEY (`idCustomer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,6 +122,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'Mikko Mastermind','Rokkikatu 6','0400582741'),(2,'Cassu aka HejaSverige','Surströmming 44','0400859736'),(3,'Alli WhiteboardLover','Tussitie 294','0400847362');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +142,7 @@ CREATE TABLE `transactions` (
   PRIMARY KEY (`idTransactions`),
   KEY `fk_Transactions_Account1_idx` (`idAccount`),
   CONSTRAINT `fk_Transactions_Account1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,6 +151,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+INSERT INTO `transactions` VALUES (1,'NOSTO','2021-12-02 18:09:51.00',5.50,1);
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,4 +284,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-01 17:41:43
+-- Dump completed on 2021-12-02 18:12:52
