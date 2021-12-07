@@ -25,6 +25,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     bank_api *api;
+    int RetryCount = 2;
 };
 
 #endif // MAINWINDOW_H

@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: netdb
 -- ------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'1234-1234',49800.00,50000.00,1,'Y'),(2,'2345-2345',48892.00,0.00,2,'N'),(3,'3456-3456',2294.00,0.00,3,'N'),(4,'4567-4567',9964.00,0.00,1,'N');
+INSERT INTO `account` VALUES (1,'FI4660004920476240',50000.00,50000.00,1,'Y'),(2,'FI4650004921527830',48892.00,0.00,2,'N'),(3,'FI4660004922679820',4562.23,0.00,3,'N'),(4,'FI4660004923899110',9964.00,0.00,1,'N');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `transactions` (
   PRIMARY KEY (`idTransactions`),
   KEY `fk_Transactions_Account1_idx` (`idAccount`),
   CONSTRAINT `fk_Transactions_Account1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,'NOSTO','2021-12-02 18:09:51.00',5.50,1),(2,'WITHDRAW','2021-12-07 10:15:59.00',100.00,1);
+INSERT INTO `transactions` VALUES (1,'NOSTO','2021-12-02 18:09:51.00',5.50,1);
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +198,7 @@ BEGIN
 	/* SELECT _Pin IF card EXISTS */ 
     SELECT Pin INTO _Pin FROM card WHERE cardId = _cardID;
     /* SELECT isCredit ONLY IF ANY ACCOUT JOINED TO THE CARD HAS isCredit = 'Y' */
-    SELECT isCredit INTO _isCredit FROM card c INNER JOIN accountcard ac ON c.idCard=ac.idCard INNER JOIN account a ON ac.idAccount = a.idAccount WHERE cardId = _cardId AND isCredit='Y' LIMIT 1;
+    SELECT isCredit INTO _isCredit FROM card c INNER JOIN accountcard ac ON c.idCard=ac.idCard INNER JOIN account a ON ac.idAccount = a.idAccount WHERE cardId = _cardId AND isCredit='Y';
     
     /* FINALLY SELECT INTERNAL VARIABLES IF CARD DID EXIST */
     IF _Pin <> '' THEN 
@@ -261,16 +261,11 @@ BEGIN
 			BEGIN
 				/* OK: Päivitä uusi Balance ja palauta Y */
 				UPDATE account SET Balance = _newBalance WHERE idAccount = _idAccount;
-               
-                /* Lokita transactions tauluun */
-                INSERT INTO transactions (Transaction, DateTime, Amount, idAccount) VALUES ('WITHDRAW', NOW(), _amount, _idAccount);
-                
-                /* Palauta Y ja uusi balanssi */
 				SELECT 'Y' AS 'withdrawOK', CONCAT('New balance:', _newBalance) AS 'message';
 			END;		
 		ELSE
-			/* NOK: Palauta 'N' ja virheviesti */
-			SELECT 'N' AS 'withdrawOK', 'Balance exceeded!' AS 'message';
+			/* NOK: Palauta 'N' */
+			SELECT 'N' AS 'withdrawOK', 'Account exceeded!' AS 'message';
 		END IF;
     END IF;
 END ;;
@@ -289,4 +284,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 10:19:13
+-- Dump completed on 2021-12-07 16:39:10
