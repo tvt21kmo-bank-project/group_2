@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: netdb
 -- ------------------------------------------------------
@@ -142,7 +142,7 @@ CREATE TABLE `transactions` (
   PRIMARY KEY (`idTransactions`),
   KEY `fk_Transactions_Account1_idx` (`idAccount`),
   CONSTRAINT `fk_Transactions_Account1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,6 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,'NOSTO','2021-12-02 18:09:51.00',5.50,1);
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,13 +258,14 @@ BEGIN
     IF (_isCredit IS NOT NULL) THEN
 		IF (_newBalance >= 0 AND _isCredit = 'N') OR (_newBalance >= 0 - _creditLimit AND _isCredit = 'Y') THEN
 			BEGIN
-				/* OK: Päivitä uusi Balance ja palauta Y */
+				/* OK: Päivitä uusi Balance, lisää tilitapahtumiina ja palauta Y ja päivitetty saldo */
 				UPDATE account SET Balance = _newBalance WHERE idAccount = _idAccount;
-				SELECT 'Y' AS 'withdrawOK', CONCAT('New balance:', _newBalance) AS 'message';
+                INSERT INTO transactions (Transaction, DateTime, Amount, idAccount) VALUES ('WITHDRAW', localtime(), _amount, _idAccount);
+				SELECT 'Y' AS 'withdrawOK', CONCAT('New balance: ', _newBalance) AS 'message';
 			END;		
 		ELSE
-			/* NOK: Palauta 'N' */
-			SELECT 'N' AS 'withdrawOK', 'Account exceeded!' AS 'message';
+			/* NOK: Palauta 'N' ja virhe viesti*/
+			SELECT 'N' AS 'withdrawOK', 'Balance exceeded!' AS 'message';
 		END IF;
     END IF;
 END ;;
@@ -284,4 +284,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 16:39:10
+-- Dump completed on 2021-12-08 14:24:14

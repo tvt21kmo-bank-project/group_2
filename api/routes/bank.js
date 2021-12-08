@@ -41,7 +41,7 @@ function(request, response) {
         else
         {
             if(dbResult.length > 0 && dbResult[0].length > 0) {
-                console.log("Account linked to the card found");
+                console.log("Account linked to the card found: " + dbResult[0][0].idAccount);
                 response.json(dbResult[0][0]);
             }
             else
@@ -62,7 +62,7 @@ function(request, response) {
         else
         {
             if(dbResult.length > 0 && dbResult[0].length > 0) {
-                console.log("Account linked to the card found. Result: " + dbResult[0][0]);
+                console.log("Account: " + request.body.idAccount + ", withdrawOK: " + dbResult[0][0].withdrawOK + ", message: " + dbResult[0][0].message);
                 response.json(dbResult[0][0]);
             }
             else
@@ -83,7 +83,7 @@ function(request, response) {
         else
         {
             if(dbResult.length > 0 && dbResult[0].length > 0) {
-                console.log("Transactions found. Result: " + dbResult[0][0]);
+                console.log("Transactions found from idAccount " + request.params.idAccount);
                 response.json(dbResult[0]);
             }
             else
