@@ -58,6 +58,7 @@ public:
     QLabel *label_2;
     QLabel *label_5;
     QLabel *label_6;
+    QLabel *ErrorMessage;
     QWidget *CreditorDebit;
     QLabel *label_14;
     QLabel *label_23;
@@ -239,6 +240,7 @@ public:
         editPIN = new QLineEdit(LogIn);
         editPIN->setObjectName(QString::fromUtf8("editPIN"));
         editPIN->setGeometry(QRect(120, 150, 113, 21));
+        editPIN->setEchoMode(QLineEdit::Password);
         label_3 = new QLabel(LogIn);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(50, 110, 51, 16));
@@ -254,6 +256,10 @@ public:
         label_6 = new QLabel(LogIn);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setGeometry(QRect(250, 250, 21, 16));
+        ErrorMessage = new QLabel(LogIn);
+        ErrorMessage->setObjectName(QString::fromUtf8("ErrorMessage"));
+        ErrorMessage->setGeometry(QRect(50, 200, 181, 31));
+        ErrorMessage->setWordWrap(true);
         stackedWidget->addWidget(LogIn);
         CreditorDebit = new QWidget();
         CreditorDebit->setObjectName(QString::fromUtf8("CreditorDebit"));
@@ -419,6 +425,7 @@ public:
         label_2->setText(QCoreApplication::translate("MainWindow", "PIN:", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "DELETE", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "OK", nullptr));
+        ErrorMessage->setText(QString());
         label_14->setText(QCoreApplication::translate("MainWindow", "BANK MIGUELO", nullptr));
         label_23->setText(QCoreApplication::translate("MainWindow", "Credit", nullptr));
         label_24->setText(QCoreApplication::translate("MainWindow", "Debit", nullptr));
