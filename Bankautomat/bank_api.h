@@ -12,8 +12,13 @@ class bank_api : public QObject
 public:
     explicit bank_api(QObject *parent = nullptr);
     bool checkPIN(QString cid, QString PIN, bool& isPIN);
+    bool saveIdAccount(QString cid, bool useCredit);
+    bool withdrawMoney(int amount, QString &message);
+    bool getTransactions(int page, int itemsPerPage, QStringList &rows, QString &totalBalance, int &totalPages);
 private:
-    int idAccount = 0;
+    const QString _credentials="newAdmin:newPass";
+    const QString _site_url="http://localhost:3000/bank/";
+    int idAccount = -1;
 };
 
 #endif // BANK_API_H
