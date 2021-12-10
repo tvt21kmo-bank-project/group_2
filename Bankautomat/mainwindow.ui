@@ -402,22 +402,9 @@ background-color: rgb(99, 99, 99);</string>
      <enum>QFrame::Plain</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="LogIn">
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>10</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>BANK MIGUELO</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="editCard">
       <property name="geometry">
        <rect>
@@ -480,19 +467,6 @@ background-color: rgb(99, 99, 99);</string>
        <string>PIN:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>250</y>
-        <width>47</width>
-        <height>13</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>DELETE</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
@@ -527,16 +501,21 @@ background-color: rgb(99, 99, 99);</string>
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>10</y>
-        <width>81</width>
-        <height>21</height>
+        <x>50</x>
+        <y>200</y>
+        <width>181</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>BANK MIGUELO</string>
+       <string/>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
+    </widget>
+    <widget class="QWidget" name="CreditorDebit">
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
@@ -582,9 +561,9 @@ background-color: rgb(99, 99, 99);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>130</y>
+        <y>120</y>
         <width>61</width>
-        <height>16</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -595,9 +574,9 @@ background-color: rgb(99, 99, 99);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>130</y>
+        <y>120</y>
         <width>47</width>
-        <height>13</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -607,10 +586,10 @@ background-color: rgb(99, 99, 99);</string>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>250</y>
+        <x>220</x>
+        <y>240</y>
         <width>47</width>
-        <height>13</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -621,43 +600,30 @@ background-color: rgb(99, 99, 99);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>170</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TRANSCTIONS</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>10</y>
+        <y>160</y>
         <width>81</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>BANK MIGUELO</string>
+       <string>TRANSACTIONS</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>240</y>
+        <width>47</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>INFO</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Withdrawal">
-     <widget class="QLabel" name="label_12">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>10</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>BANK MIGUELO</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
@@ -668,7 +634,7 @@ background-color: rgb(99, 99, 99);</string>
        </rect>
       </property>
       <property name="text">
-       <string>100</string>
+       <string>60</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_16">
@@ -687,27 +653,14 @@ background-color: rgb(99, 99, 99);</string>
      <widget class="QLabel" name="label_19">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>200</y>
+        <x>180</x>
+        <y>240</y>
         <width>81</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>OTHER AMOUNT</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_20">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>240</y>
-        <width>21</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>OK</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_21">
@@ -720,7 +673,7 @@ background-color: rgb(99, 99, 99);</string>
        </rect>
       </property>
       <property name="text">
-       <string>100</string>
+       <string>40</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_22">
@@ -733,7 +686,7 @@ background-color: rgb(99, 99, 99);</string>
        </rect>
       </property>
       <property name="text">
-       <string>100</string>
+       <string>20</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_17">
@@ -759,7 +712,7 @@ background-color: rgb(99, 99, 99);</string>
        </rect>
       </property>
       <property name="text">
-       <string>100</string>
+       <string>200</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_13">
@@ -799,16 +752,37 @@ background-color: rgb(99, 99, 99);</string>
      <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>20</y>
-        <width>81</width>
-        <height>20</height>
+        <x>50</x>
+        <y>190</y>
+        <width>181</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>BANK MIGUELO</string>
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>200</y>
+        <width>21</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>500</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Balance">
      <widget class="QLabel" name="label_27">
       <property name="geometry">
        <rect>
@@ -910,14 +884,155 @@ background-color: rgb(99, 99, 99);</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="OtherAmount">
+     <widget class="QLabel" name="label_34">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>81</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Amount">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>110</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_29">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>80</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Insert amount</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_35">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>240</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>BACK</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_36">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>240</y>
+        <width>21</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="wmessage2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>190</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page">
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>30</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CLIENT INFO</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>256</width>
+        <height>171</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_37">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>240</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>BACK</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_32">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>120</y>
+        <width>16</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>UP</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_33">
+      <property name="geometry">
+       <rect>
+        <x>235</x>
+        <y>240</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DOWN</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
-   <widget class="QLabel" name="label_29">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>170</x>
       <y>0</y>
       <width>81</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -954,7 +1069,7 @@ background-color: rgb(99, 99, 99);</string>
      <x>0</x>
      <y>0</y>
      <width>425</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

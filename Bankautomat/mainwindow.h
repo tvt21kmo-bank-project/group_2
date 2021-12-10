@@ -26,6 +26,14 @@ private slots:
 
     void on_funbtn2_clicked();
 
+    void on_funbtn3_clicked();
+
+    void on_funbtn4_clicked();
+
+    void on_funbtn6_clicked();
+
+    void on_funbtn7_clicked();
+
 private:
     Ui::MainWindow *ui;
     bank_api *api;
