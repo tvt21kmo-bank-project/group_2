@@ -498,6 +498,24 @@ background-color: rgb(99, 99, 99);</string>
      </widget>
     </widget>
     <widget class="QWidget" name="CreditorDebit">
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>200</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="CreditorDebit">
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
@@ -714,6 +732,27 @@ background-color: rgb(99, 99, 99);</string>
       <property name="geometry">
        <rect>
         <x>50</x>
+        <y>240</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Balance">
+     <widget class="QLabel" name="label_26">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
         <y>190</y>
         <width>181</width>
         <height>31</height>
@@ -855,9 +894,6 @@ background-color: rgb(99, 99, 99);</string>
         <height>20</height>
        </rect>
       </property>
-      <property name="text">
-       <string>BANK MIGUELO</string>
-      </property>
      </widget>
      <widget class="QLineEdit" name="Amount">
       <property name="geometry">
@@ -962,6 +998,32 @@ background-color: rgb(99, 99, 99);</string>
        <string>BACK</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_32">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>120</y>
+        <width>16</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>UP</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_33">
+      <property name="geometry">
+       <rect>
+        <x>235</x>
+        <y>240</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DOWN</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QLabel" name="label">
@@ -977,6 +1039,29 @@ background-color: rgb(99, 99, 99);</string>
      <string>BANK MIGUELO</string>
     </property>
    </widget>
+   <zorder>bnt3</zorder>
+   <zorder>btn2</zorder>
+   <zorder>btn1</zorder>
+   <zorder>btn4</zorder>
+   <zorder>btn5</zorder>
+   <zorder>btn6</zorder>
+   <zorder>btn7</zorder>
+   <zorder>btn8</zorder>
+   <zorder>btn9</zorder>
+   <zorder>btnhast</zorder>
+   <zorder>btn0</zorder>
+   <zorder>btnC</zorder>
+   <zorder>funbtn1</zorder>
+   <zorder>funbtn2</zorder>
+   <zorder>funbtn3</zorder>
+   <zorder>funbtn4</zorder>
+   <zorder>funbtn5</zorder>
+   <zorder>funbtn6</zorder>
+   <zorder>funbtn7</zorder>
+   <zorder>funbtn8</zorder>
+   <zorder>stackedWidget</zorder>
+   <zorder>label_29</zorder>
+   <zorder>label_29</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

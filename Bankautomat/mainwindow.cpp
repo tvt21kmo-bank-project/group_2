@@ -227,7 +227,6 @@ void MainWindow::on_funbtn8_clicked()
             {
                ui->ErrorMessage->setText("Your Account is Locked, please contact your bank for further details.");
             }
-
             break;
         }
         case 2: {
@@ -251,5 +250,4 @@ void MainWindow::on_funbtn8_clicked()
         ui->stackedWidget->setCurrentIndex(6);
         break;
    }
-    }
 }
