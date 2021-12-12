@@ -157,18 +157,20 @@ void MainWindow::on_funbtn5_clicked()
                 transPage--;
                 UpdateTransactionsList();
             }
+            break;
         }
         case 3: {
             //3 = Withdraw-valikon painike: 100
-         QString message = "";
-         bool ret = api->withdrawMoney(100, message);
-          ui->wmessage->setText(message);
-          ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+            QString message = "";
+            bool ret = api->withdrawMoney(100, message);
+            ui->wmessage->setText(message);
+            ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+            break;
         }
          case 2: {
              // = MainPage-valikon painike: Balance
-          ui->stackedWidget->setCurrentIndex(4);
-         break;
+            ui->stackedWidget->setCurrentIndex(4);
+            break;
         }
     }
 }
@@ -182,8 +184,9 @@ void MainWindow::on_funbtn6_clicked()
              //3 = Withdraw-valikon painike: 200
              QString message = "";
              bool ret = api->withdrawMoney(200, message);
-              ui->wmessage->setText(message);
-              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+             ui->wmessage->setText(message);
+             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+             break;
         }
     }
 }
@@ -197,8 +200,9 @@ void MainWindow::on_funbtn7_clicked()
              //3 = Withdraw-valikon painike: 500
              QString message = "";
              bool ret = api->withdrawMoney(500, message);
-              ui->wmessage->setText(message);
-              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+             ui->wmessage->setText(message);
+             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+             break;
         }
     }
 }
@@ -256,13 +260,14 @@ void MainWindow::on_funbtn8_clicked()
             if (transPage < transTotPages){
                 transPage++;
                 UpdateTransactionsList();
-                break;
             }
+            break;
         }
         case 3: {
             //3 = Withdrawal-valikon painike: Other Amount
-        ui->stackedWidget->setCurrentIndex(6);
-        break;
+            ui->stackedWidget->setCurrentIndex(6);
+            break;
+        }
    }
 }
 
@@ -283,6 +288,14 @@ void MainWindow::NumberKeyClicked(char key)
                 //else ui->editPIN->clear();  //hastag (not used)
             }
             break;
+        }
+        case 6: {
+            //6 = Muu summa
+            QString amount = ui->Amount->text();
+            if (key >= '0' && key <= '9' && amount.length() < ui->Amount->maxLength())
+                ui->Amount->setText(amount + key);
+            else if (key == 'C') ui->Amount->clear();
+            //else ui->Amount->clear();  //hastag (not used)
         }
     }
 }

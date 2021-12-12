@@ -402,7 +402,7 @@ background-color: rgb(99, 99, 99);</string>
      <enum>QFrame::Plain</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="LogIn">
      <widget class="QLineEdit" name="editCard">
@@ -422,6 +422,9 @@ background-color: rgb(99, 99, 99);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="editPIN">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -435,6 +438,9 @@ background-color: rgb(99, 99, 99);</string>
       </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
@@ -500,24 +506,6 @@ background-color: rgb(99, 99, 99);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(255, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="CreditorDebit">
-     <widget class="QLabel" name="label_14">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>200</y>
-        <width>181</width>
-        <height>31</height>
-       </rect>
       </property>
       <property name="text">
        <string/>
@@ -744,28 +732,7 @@ background-color: rgb(99, 99, 99);</string>
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>240</y>
-        <width>181</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="Balance">
-     <widget class="QLabel" name="label_26">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>190</y>
+        <y>200</y>
         <width>181</width>
         <height>31</height>
        </rect>
@@ -908,6 +875,9 @@ background-color: rgb(99, 99, 99);</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="Amount">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -915,6 +885,12 @@ background-color: rgb(99, 99, 99);</string>
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="maxLength">
+       <number>5</number>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label_29">
@@ -973,7 +949,7 @@ background-color: rgb(99, 99, 99);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="ClientInfo">
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
@@ -1058,7 +1034,7 @@ background-color: rgb(99, 99, 99);</string>
      <x>0</x>
      <y>0</y>
      <width>425</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
