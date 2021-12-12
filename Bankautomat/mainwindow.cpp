@@ -9,14 +9,24 @@ MainWindow::MainWindow(QWidget *parent) :
     api = new bank_api();
     ui->stackedWidget->setCurrentIndex(0);
     ui->editCard->setFocus();
+    //Timer
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MainWindow::timerTick);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete api;
+    delete timer;
     ui = nullptr;
     api = nullptr;
+    timer = nullptr;
+}
+
+void MainWindow::timerTick()
+{
+    //Tick
 }
 
 // Päivittää tilitapahtuma-listan
@@ -100,10 +110,11 @@ void MainWindow::on_funbtn8_clicked()
             //0 = Kirjautumisnäytön painike: OK
             //Tarkistetaan PIN
             if (ui->editCard->text().length() < 8 || ui->editPIN->text().length() < 4) break;
+            QString message = "";
             bool isCredit = false;
             bool isPINvalid = false;
 
-            isPINvalid = api->checkPIN(ui->editCard->text(), ui->editPIN->text(), isCredit);
+            isPINvalid = api->checkPIN(ui->editCard->text(), ui->editPIN->text(), isCredit, message);
 
             if (isPINvalid)
             {
@@ -116,8 +127,11 @@ void MainWindow::on_funbtn8_clicked()
                }
             }
             else if (RetryCount > 0) {              
-                ui->ErrorMessage->setText("Invalid credientials, " + QString::number(RetryCount) + " try/tries left.");
-                RetryCount--;
+                if (message != "") ui->ErrorMessage->setText(message);
+                else {
+                    ui->ErrorMessage->setText("Invalid credientials, " + QString::number(RetryCount) + " try/tries left.");
+                    RetryCount--;
+                }
                 ui->editPIN->clear();
                 ui->editPIN->setFocus();
             }
@@ -145,3 +159,38 @@ void MainWindow::on_funbtn8_clicked()
         }
     }
 }
+
+
+
+// * Numeronäppäimistö *
+void MainWindow::NumberKeyClicked(char key)
+{
+    switch (ui->stackedWidget->currentIndex())
+    {
+        case 0: {
+            //0 = Kirjautumisnäyttö: Käytetään PIN kenttää
+            if (ui->editCard->text().length() > 0) {
+                QString pin = ui->editPIN->text();
+                if (key >= '0' && key <= '9' && pin.length() < ui->editPIN->maxLength())
+                    ui->editPIN->setText(pin + key);
+                else if (key == 'C') ui->editPIN->clear();
+                //else ui->editPIN->clear();  //hastag (not used)
+            }
+            break;
+        }
+    }
+}
+
+// Slotit
+void MainWindow::on_btn1_clicked() { NumberKeyClicked('1'); }
+void MainWindow::on_btn2_clicked() { NumberKeyClicked('2'); }
+void MainWindow::on_bnt3_clicked() { NumberKeyClicked('3'); }
+void MainWindow::on_btn4_clicked() { NumberKeyClicked('4'); }
+void MainWindow::on_btn5_clicked() { NumberKeyClicked('5'); }
+void MainWindow::on_btn6_clicked() { NumberKeyClicked('6'); }
+void MainWindow::on_btn7_clicked() { NumberKeyClicked('7'); }
+void MainWindow::on_btn8_clicked() { NumberKeyClicked('8'); }
+void MainWindow::on_btn9_clicked() { NumberKeyClicked('9'); }
+void MainWindow::on_btnhast_clicked() { NumberKeyClicked('#'); }
+void MainWindow::on_btn0_clicked() { NumberKeyClicked('0'); }
+void MainWindow::on_btnC_clicked() { NumberKeyClicked('C'); }

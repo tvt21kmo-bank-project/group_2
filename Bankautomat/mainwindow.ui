@@ -402,7 +402,7 @@ background-color: rgb(99, 99, 99);</string>
      <enum>QFrame::Plain</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="LogIn">
      <widget class="QLabel" name="label">
@@ -427,6 +427,12 @@ background-color: rgb(99, 99, 99);</string>
         <height>21</height>
        </rect>
       </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>15</number>
+      </property>
      </widget>
      <widget class="QLineEdit" name="editPIN">
       <property name="geometry">
@@ -436,6 +442,9 @@ background-color: rgb(99, 99, 99);</string>
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="maxLength">
+       <number>15</number>
       </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
@@ -514,6 +523,9 @@ background-color: rgb(99, 99, 99);</string>
         <width>181</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 0, 0);</string>
       </property>
       <property name="text">
        <string/>
@@ -924,29 +936,6 @@ background-color: rgb(99, 99, 99);</string>
      <string>BANK MIGUELO</string>
     </property>
    </widget>
-   <zorder>bnt3</zorder>
-   <zorder>btn2</zorder>
-   <zorder>btn1</zorder>
-   <zorder>btn4</zorder>
-   <zorder>btn5</zorder>
-   <zorder>btn6</zorder>
-   <zorder>btn7</zorder>
-   <zorder>btn8</zorder>
-   <zorder>btn9</zorder>
-   <zorder>btnhast</zorder>
-   <zorder>btn0</zorder>
-   <zorder>btnC</zorder>
-   <zorder>funbtn1</zorder>
-   <zorder>funbtn2</zorder>
-   <zorder>funbtn3</zorder>
-   <zorder>funbtn4</zorder>
-   <zorder>funbtn5</zorder>
-   <zorder>funbtn6</zorder>
-   <zorder>funbtn7</zorder>
-   <zorder>funbtn8</zorder>
-   <zorder>stackedWidget</zorder>
-   <zorder>label_29</zorder>
-   <zorder>label_29</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
