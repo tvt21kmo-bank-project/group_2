@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 5.0.3, 2021-12-08T21:11:30. -->
-=======
-<!-- Written by QtCreator 4.3.1, 2021-12-09T16:55:21. -->
->>>>>>> main
+<!-- Written by QtCreator 5.0.3, 2021-12-07T10:22:12. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{73883b9f-9e45-4caf-a940-3c8792e0b2cd}</value>
+  <value type="QByteArray">{299fe133-6c52-4e4d-af02-a5b55a7ef47d}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -241,21 +237,8 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/bin/bank_project/group_2/Bankautomat/Bank_automat.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/bin/bank_project/group_2/Bankautomat/Bank_automat.pro</value>
-=======
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Bank_automat</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/sovellusprojekti/group_2/Bankautomat/Bank_automat.pro</value>
-    <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">Bank_automat.pro</value>
-    <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">C:/sovellusprojekti/qt/build-Bank_automat-Desktop_Qt_5_9_1_MinGW_32bit-Debug</value>
-    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
->>>>>>> main
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

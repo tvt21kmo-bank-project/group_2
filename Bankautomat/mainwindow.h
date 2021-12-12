@@ -52,6 +52,14 @@ private slots:
     void on_btn0_clicked();
 
     void on_btnC_clicked();
+    
+    void on_funbtn3_clicked();
+
+    void on_funbtn4_clicked();
+
+    void on_funbtn6_clicked();
+
+    void on_funbtn7_clicked();
 
 private:
     Ui::MainWindow *ui;

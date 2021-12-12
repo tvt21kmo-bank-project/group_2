@@ -57,9 +57,9 @@ void MainWindow::on_funbtn1_clicked()
             break;
         }
         case 3: {
-            //3 = Withdraw-valikon painike: 100
+            //3 = Withdraw-valikon painike: 20
             QString message = "";
-            bool ret = api->withdrawMoney(100, message);
+            bool ret = api->withdrawMoney(20, message);
             ui->wmessage->setText(message);
             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
@@ -76,6 +76,66 @@ void MainWindow::on_funbtn2_clicked()
             ui->stackedWidget->setCurrentIndex(5);
             UpdateTransactionsList();
             break;
+        }
+        case 3: {
+             //3 = Withdraw-valikon painike: 40
+             QString message = "";
+             bool ret = api->withdrawMoney(40, message);
+              ui->wmessage->setText(message);
+              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+        }
+    }
+}
+
+//Funktiopainiketta 3 on painettu
+void MainWindow::on_funbtn3_clicked()
+{
+    switch (ui->stackedWidget->currentIndex())
+    {
+        case 3: {
+             //3 = Withdraw-valikon painike: 60
+             QString message = "";
+             bool ret = api->withdrawMoney(60, message);
+              ui->wmessage->setText(message);
+              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+        }
+    }
+}
+
+//Funktiopainiketta 4 on painettu
+void MainWindow::on_funbtn4_clicked()
+{
+    switch (ui->stackedWidget->currentIndex())
+    {
+        case 3: {
+             //3 = Withdraw-valikon painike: BACK
+        ui->stackedWidget->setCurrentIndex(2);
+        break;
+        }
+        case 5: {
+            //5 = Transaction-valikon painike: BACK
+        ui->stackedWidget->setCurrentIndex(2);
+         break;
+         }
+         case 4: {
+            //4 = Balance-valikon painike: BACK
+         ui->stackedWidget->setCurrentIndex(2);
+        break;
+        }
+         case 6: {
+             //6 = Other Amount-valikon painike: BACK
+         ui->stackedWidget->setCurrentIndex(3);
+         break;
+        }
+        case 2: {
+            //2 = MainPage -valikon painike: INFO
+        ui->stackedWidget->setCurrentIndex(7);
+        break;
+        }
+        case 7: {
+            //6 = Other Amount-valikon painike: BACK
+        ui->stackedWidget->setCurrentIndex(2);
+        break;
         }
     }
 }
@@ -97,6 +157,48 @@ void MainWindow::on_funbtn5_clicked()
                 transPage--;
                 UpdateTransactionsList();
             }
+        }
+        case 3: {
+            //3 = Withdraw-valikon painike: 100
+         QString message = "";
+         bool ret = api->withdrawMoney(100, message);
+          ui->wmessage->setText(message);
+          ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+        }
+         case 2: {
+             // = MainPage-valikon painike: Balance
+          ui->stackedWidget->setCurrentIndex(4);
+         break;
+        }
+    }
+}
+
+//Funktiopainiketta 6 on painettu
+void MainWindow::on_funbtn6_clicked()
+{
+    switch (ui->stackedWidget->currentIndex())
+    {
+        case 3: {
+             //3 = Withdraw-valikon painike: 200
+             QString message = "";
+             bool ret = api->withdrawMoney(200, message);
+              ui->wmessage->setText(message);
+              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+        }
+    }
+}
+
+//Funktiopainiketta 7 on painettu
+void MainWindow::on_funbtn7_clicked()
+{
+    switch (ui->stackedWidget->currentIndex())
+    {
+        case 3: {
+             //3 = Withdraw-valikon painike: 500
+             QString message = "";
+             bool ret = api->withdrawMoney(500, message);
+              ui->wmessage->setText(message);
+              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
     }
 }
@@ -139,7 +241,6 @@ void MainWindow::on_funbtn8_clicked()
             {
                ui->ErrorMessage->setText("Your Account is Locked, please contact your bank for further details.");
             }
-
             break;
         }
         case 2: {
@@ -152,12 +253,17 @@ void MainWindow::on_funbtn8_clicked()
         }
         case 5: {
             //5 = Tilitapahtuma-näytön painike: DOWN
-            if (transPage < transTotPages) {
+            if (transPage < transTotPages){
                 transPage++;
                 UpdateTransactionsList();
+                break;
             }
         }
-    }
+        case 3: {
+            //3 = Withdrawal-valikon painike: Other Amount
+        ui->stackedWidget->setCurrentIndex(6);
+        break;
+   }
 }
 
 
