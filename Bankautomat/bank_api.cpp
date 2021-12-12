@@ -9,11 +9,13 @@ bank_api::bank_api(QObject *parent) : QObject(parent)
 // cid = Kortin numero
 // PIN = Kortin PIN-koodi
 // (ref)isCredit = Palautettava true/false siitä onko credit tiliä liitettynä
+// (ref)message = Palauttaa mahdollisen virheviestin
 // Palauttaa true, jos PIN koodi on ok ja false jos ei ole ok tai virhe tapahtui
-bool bank_api::checkPIN(QString cid, QString PIN, bool& isCredit)
+bool bank_api::checkPIN(QString cid, QString PIN, bool& isCredit, QString& message)
 {
     //Alustukset
     isCredit = false;
+    message = "";
     bool pinOK = false;
 
     // Luodaan sisäinen event loop
@@ -46,6 +48,7 @@ bool bank_api::checkPIN(QString cid, QString PIN, bool& isCredit)
     else
     {
         // Virhe
+        message = "Error: " + reply->errorString();
         qDebug() << "Error: " << reply->errorString();
     }
 
