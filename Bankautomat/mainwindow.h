@@ -67,6 +67,7 @@ private:
     int transTotPages = 0;
     int transPage = 1;
     int RetryCount = 2;
+    double creditLimit = 0;
     QTimer *timer;
 };
 

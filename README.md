@@ -1,7 +1,7 @@
 # group_2
-branch: qt_api_client_2
+branch: userInfoAndOtherStuff
 creator: t0tumi01;
-First real bank_api class method added
+User info data queries added to SQL and REST-API (server and client). UI updates
 
 
 Asiakkaita 3kpl

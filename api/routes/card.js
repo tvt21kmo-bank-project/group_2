@@ -63,7 +63,7 @@ function(request, response) {
         }
     }
   });
-})
+});
 
 router.delete('/:id', 
 function(request, response) {

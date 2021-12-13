@@ -142,7 +142,7 @@ CREATE TABLE `transactions` (
   PRIMARY KEY (`idTransactions`),
   KEY `fk_Transactions_Account1_idx` (`idAccount`),
   CONSTRAINT `fk_Transactions_Account1` FOREIGN KEY (`idAccount`) REFERENCES `account` (`idAccount`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,8 +169,8 @@ UNLOCK TABLES;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getIdAccount`(IN _cardID VARCHAR(45), IN _isCredit VARCHAR(1))
 BEGIN
-    /* SELECT idAccount ONLY IF ACCOUNT JOINED TO THE CARD FOUND */
-    SELECT a.idAccount AS idAccount FROM card c INNER JOIN accountcard ac ON c.idCard=ac.idCard INNER JOIN account a ON ac.idAccount = a.idAccount WHERE cardId = _cardId AND isCredit=_isCredit;
+    /* SELECT idAccount and CreditLimit ONLY IF ACCOUNT JOINED TO THE CARD FOUND */
+    SELECT a.idAccount AS idAccount, CreditLimit FROM card c INNER JOIN accountcard ac ON c.idCard=ac.idCard INNER JOIN account a ON ac.idAccount = a.idAccount WHERE cardId = _cardId AND isCredit=_isCredit;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -231,6 +231,9 @@ BEGIN
     /* Haetaan tapahtumat sivutuksen mukaan */
     SET _offset = (_page - 1) * _transactionsPerPage;
 	SELECT DateTime, Transaction, Amount, _Balance AS 'TotalBalance', _pagesCount AS 'PagesCount' FROM transactions WHERE idAccount = _idAccount ORDER BY DateTime DESC LIMIT _offset, _transactionsPerPage;
+    IF _pagesCount = 0 AND _balance > 0 THEN
+		SELECT _Balance as 'TotalBalance';
+	END IF;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -284,4 +287,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-08 14:24:14
+-- Dump completed on 2021-12-13 20:32:35

@@ -12,9 +12,11 @@ class bank_api : public QObject
 public:
     explicit bank_api(QObject *parent = nullptr);
     bool checkPIN(QString cid, QString PIN, bool& isPIN, QString& message);
-    bool saveIdAccount(QString cid, bool useCredit);
+    bool saveIdAccount(QString cid, bool useCredit, double &creditLimit);
     bool withdrawMoney(int amount, QString &message);
     bool getTransactions(int page, int itemsPerPage, QStringList &rows, QString &totalBalance, int &totalPages);
+    bool getAccountHolder(QStringList &rows);
+    bool getCardHolder(QString cid, QStringList &rows);
 private:
     const QString _credentials="newAdmin:newPass";
     const QString _site_url="http://localhost:3000/bank/";
