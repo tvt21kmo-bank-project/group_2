@@ -1,9 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+// Constructor: Luo oliot
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     api = new bank_api();
@@ -12,8 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //Timer
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::timerTick);
+    timer->start(30000);   //Annetaan ensimmäisellä kerralla 30s aikaa kirjautua (jatkossa 10s)
 }
 
+// Destructor: Tuhoa oliot
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -24,9 +25,43 @@ MainWindow::~MainWindow()
     timer = nullptr;
 }
 
+// Käynnistää ajastimen uudelleen
+void MainWindow::TimerReset()
+{
+    timer->stop();
+    if(ui->stackedWidget->currentIndex() == 2)
+        timer->start(30000);
+    else
+        timer->start(10000);
+
+}
+
+// Ajastimen aika on kulunut: Suorita näytön vaihto / nollaukset
 void MainWindow::timerTick()
 {
-    //Tick
+    switch (ui->stackedWidget->currentIndex())
+    {
+        case 0:
+        case 1:
+        case 2:
+        {
+            //0 = Kirjautumisnäyttö & 1 = Credit/debit-näyttö & 2 = Päävalikko: Tyhjennetään kentät ja palataan kirjautumisnäyttöön
+            ui->editCard->clear();
+            ui->editPIN->clear();
+            ui->ErrorMessage->clear();
+            ui->editCard->setFocus();
+            ui->stackedWidget->setCurrentIndex(0);
+            break;
+        }
+        default:
+        {
+            //Muista näytöistä palataan päävalikkoon (näytöistä 3 ja 6 tyhjennetään ensin ilmoitus)
+            if(ui->stackedWidget->currentIndex() == 3 && ui->wmessage->text() != "") ui->wmessage->clear();
+            else if(ui->stackedWidget->currentIndex() == 6 && ui->wmessage2->text() != "") ui->wmessage2->clear();
+            else ui->stackedWidget->setCurrentIndex(2);
+            break;
+        }
+    }
 }
 
 // Päivittää tilitapahtuma-listan
@@ -35,11 +70,12 @@ void MainWindow::UpdateTransactionsList()
     ui->listTransactions->clear();
     QStringList rows;
     QString totalBalance = "0.00";      //Ei toistaiseksi käytössä
-    //Päivitetään listan
+    //Haetaan tapahtumat sivutuksen mukaan ja päivitetään gui
     api->getTransactions(transPage, 10, rows, totalBalance, transTotPages);
     ui->listTransactions->addItems(rows);
 }
 
+// * Funktionäppäimistö *
 // Funktiopainiketta 1 on painettu
 void MainWindow::on_funbtn1_clicked()
 {
@@ -66,6 +102,7 @@ void MainWindow::on_funbtn1_clicked()
             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
     }
+    TimerReset();
 }
 
 //Funktiopainiketta 2 on painettu
@@ -88,6 +125,7 @@ void MainWindow::on_funbtn2_clicked()
             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
     }
+    TimerReset();
 }
 
 //Funktiopainiketta 3 on painettu
@@ -104,6 +142,7 @@ void MainWindow::on_funbtn3_clicked()
              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
     }
+    TimerReset();
 }
 
 //Funktiopainiketta 4 on painettu
@@ -152,6 +191,7 @@ void MainWindow::on_funbtn4_clicked()
             break;
         }
     }
+    TimerReset();
 }
 
 //Funktiopainiketta 5 on painettu
@@ -198,6 +238,7 @@ void MainWindow::on_funbtn5_clicked()
             break;
         }
     }
+    TimerReset();
 }
 
 //Funktiopainiketta 6 on painettu
@@ -215,6 +256,7 @@ void MainWindow::on_funbtn6_clicked()
              break;
         }
     }
+    TimerReset();
 }
 
 //Funktiopainiketta 7 on painettu
@@ -232,6 +274,7 @@ void MainWindow::on_funbtn7_clicked()
              break;
         }
     }
+    TimerReset();
 }
 
 //Funktiopainiketta 8 on painettu
@@ -315,7 +358,8 @@ void MainWindow::on_funbtn8_clicked()
             }
             break;
         }
-   }
+    }
+    TimerReset();
 }
 
 
@@ -344,6 +388,7 @@ void MainWindow::NumberKeyClicked(char key)
             //else ui->Amount->clear();  //hastag (not used)
         }
     }
+    TimerReset();
 }
 
 // Slotit
