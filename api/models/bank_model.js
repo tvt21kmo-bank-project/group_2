@@ -17,6 +17,12 @@ const bank = {
     getTransactions: function(id, page, actionsPerPage, callback) {
         return db.query('call getTransactions(?,?,?)',
         [id, page, actionsPerPage], callback);
+    },
+    getAccountHolder: function(id, callback) {
+        return db.query('SELECT name, Address, PhoneNumber FROM customer c INNER JOIN account a on c.idCustomer=a.idCustomer WHERE idAccount=?', id,callback);
+    },
+    getCardHolder: function(CardId, callback) {
+        return db.query('SELECT name, Address, PhoneNumber FROM customer c INNER JOIN card d on c.idCustomer=d.idCustomer WHERE cardId=?', CardId, callback);
     }
 };
 //exportilla viedään ulos bank objekti

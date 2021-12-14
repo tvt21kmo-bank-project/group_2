@@ -47,7 +47,7 @@ function(request, response) {
             else
             {
                 console.log("Account linked to the card did not found");
-                response.json({idAccount: -1});
+                response.json({idAccount: -1, CreditLimit: "NA"});
             }
         }
     });
@@ -82,15 +82,64 @@ function(request, response) {
         }
         else
         {
-            if(dbResult.length > 0 && dbResult[0].length > 0) {
-                console.log("Transactions found from idAccount " + request.params.idAccount);
+            if(dbResult.length > 0) {
+                if (dbResult[0].length > 0) {
+                    console.log("Transactions found from idAccount " + request.params.idAccount);
+                    response.json(dbResult[0]);
+                }
+                else if (dbResult[1].length > 0)
+                {
+                    console.log("Transactions did not found from idAccount " + request.params.idAccount);
+                    response.json(dbResult[1]);
+                }
+            }
+            else
+            {
+                console.log("Account did not found");
+                response.json({message: 'Account did not found!'});
+            } 
+        }
+    })
+});
+
+router.get('/getAccountHolder/:idAccount',
+function(request, response) {
+    bank.getAccountHolder(request.params.idAccount, function(err, dbResult) {
+        if (err) {
+            response.json(err);
+        }
+        else
+        {
+            if(dbResult.length > 0) {
+                console.log("Account" + request.params.idAccount + ", Name: " + dbResult[0].name + ", Address: " + dbResult[0].Address + ", Phone: " + dbResult[0].PhoneNumber);
                 response.json(dbResult[0]);
             }
             else
             {
-                console.log("Transactions did not found");
-                response.json({message: 'Transactions did not found!'});
-            } 
+                console.log("Account did not found");
+                response.json({name: '', Address: '', PhoneNuber: ''});
+            }
+        }
+    })
+});
+
+router.get('/getCardHolder/:CardId',
+function(request, response) {
+    bank.getCardHolder(request.params.CardId, function(err, dbResult) {
+        if (err) {
+            response.json(err);
+        }
+        else
+        {
+            if(dbResult.length > 0) {
+                console.log("Card: " + request.params.CardId + ", Name: " + dbResult[0].name + ", Address: " + dbResult[0].Address + ", Phone: " + dbResult[0].PhoneNumber);
+                response.json(dbResult[0]);
+            }
+            else
+            {
+                console.log("Card did not found");
+                response.json({name: '', Address: '', PhoneNuber: ''});
+            }
         }
     })
 })

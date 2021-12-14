@@ -47,12 +47,13 @@ void MainWindow::on_funbtn1_clicked()
     {
         case 1: {
             //1 = Credit/debit-näytön painike: Credit
-            api->saveIdAccount(ui->editCard->text(), true);
+            api->saveIdAccount(ui->editCard->text(), true, creditLimit);
             ui->stackedWidget->setCurrentIndex(2);
             break;
         }
         case 2: {
             //2 = Päävalikon painike: Withdraw
+            ui->wmessage->clear();
             ui->stackedWidget->setCurrentIndex(3);
             break;
         }
@@ -60,6 +61,7 @@ void MainWindow::on_funbtn1_clicked()
             //3 = Withdraw-valikon painike: 20
             QString message = "";
             bool ret = api->withdrawMoney(20, message);
+            if (creditLimit > 0 && ret) message += "\nCredit Limit: " + QString::number(creditLimit);
             ui->wmessage->setText(message);
             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
@@ -78,11 +80,12 @@ void MainWindow::on_funbtn2_clicked()
             break;
         }
         case 3: {
-             //3 = Withdraw-valikon painike: 40
-             QString message = "";
-             bool ret = api->withdrawMoney(40, message);
-              ui->wmessage->setText(message);
-              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+            //3 = Withdraw-valikon painike: 40
+            QString message = "";
+            bool ret = api->withdrawMoney(40, message);
+            if (creditLimit > 0 && ret) message += "\nCredit Limit: " + QString::number(creditLimit);
+            ui->wmessage->setText(message);
+            ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
     }
 }
@@ -96,8 +99,9 @@ void MainWindow::on_funbtn3_clicked()
              //3 = Withdraw-valikon painike: 60
              QString message = "";
              bool ret = api->withdrawMoney(60, message);
-              ui->wmessage->setText(message);
-              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
+             if (creditLimit > 0 && ret) message += "\nCredit Limit: " + QString::number(creditLimit);
+             ui->wmessage->setText(message);
+             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
         }
     }
 }
@@ -108,34 +112,44 @@ void MainWindow::on_funbtn4_clicked()
     switch (ui->stackedWidget->currentIndex())
     {
         case 3: {
-             //3 = Withdraw-valikon painike: BACK
-        ui->stackedWidget->setCurrentIndex(2);
-        break;
+            //3 = Withdraw-valikon painike: BACK
+            ui->wmessage->clear();
+            ui->stackedWidget->setCurrentIndex(2);
+            break;
         }
         case 5: {
             //5 = Transaction-valikon painike: BACK
-        ui->stackedWidget->setCurrentIndex(2);
-         break;
-         }
-         case 4: {
-            //4 = Balance-valikon painike: BACK
-         ui->stackedWidget->setCurrentIndex(2);
-        break;
+            ui->wmessage->clear();
+            ui->stackedWidget->setCurrentIndex(2);
+            break;
         }
-         case 6: {
+        case 4: {
+            //4 = Balance-valikon painike: BACK
+            ui->wmessage->clear();
+            ui->stackedWidget->setCurrentIndex(2);
+            break;
+        }
+        case 6: {
              //6 = Other Amount-valikon painike: BACK
-         ui->stackedWidget->setCurrentIndex(3);
-         break;
+            ui->stackedWidget->setCurrentIndex(3);
+            break;
         }
         case 2: {
             //2 = MainPage -valikon painike: INFO
-        ui->stackedWidget->setCurrentIndex(7);
-        break;
+            ui->listInfo->clear();
+            QStringList rows;
+            //Päivitetään listan rivit
+            api->getCardHolder(ui->editCard->text(), rows);
+            api->getAccountHolder(rows);
+            ui->listInfo->addItems(rows);
+            ui->stackedWidget->setCurrentIndex(7);
+            break;
         }
         case 7: {
             //6 = Other Amount-valikon painike: BACK
-        ui->stackedWidget->setCurrentIndex(2);
-        break;
+            ui->wmessage->clear();
+            ui->stackedWidget->setCurrentIndex(2);
+            break;
         }
     }
 }
@@ -147,7 +161,9 @@ void MainWindow::on_funbtn5_clicked()
     {
         case 1: {
             //1 = Credit/debit-näytön painike: Debit
-            api->saveIdAccount(ui->editCard->text(), false);
+            double temp = 0;
+            api->saveIdAccount(ui->editCard->text(), false, temp);
+            creditLimit = 0;
             ui->stackedWidget->setCurrentIndex(2);
             break;
         }
@@ -163,12 +179,21 @@ void MainWindow::on_funbtn5_clicked()
             //3 = Withdraw-valikon painike: 100
             QString message = "";
             bool ret = api->withdrawMoney(100, message);
+            if (creditLimit > 0 && ret) message += "\nCredit Limit: " + QString::number(creditLimit);
             ui->wmessage->setText(message);
             ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
             break;
         }
          case 2: {
-             // = MainPage-valikon painike: Balance
+            //2 = MainPage-valikon painike: Balance
+            ui->listBalance->clear();
+            QStringList rows;
+            int totPages = 0;
+            QString totalBalance = "0.00";      //Ei toistaiseksi käytössä
+            //Päivitetään listan rivit
+            api->getTransactions(1, 5, rows, totalBalance, totPages);
+            ui->listBalance->addItems(rows);
+            if (creditLimit > 0) ui->listBalance->addItem("CARD CREDIT LIMIT: " + QString::number(creditLimit));
             ui->stackedWidget->setCurrentIndex(4);
             break;
         }
@@ -184,6 +209,7 @@ void MainWindow::on_funbtn6_clicked()
              //3 = Withdraw-valikon painike: 200
              QString message = "";
              bool ret = api->withdrawMoney(200, message);
+             if (creditLimit > 0 && ret) message += "\nCredit Limit: " + QString::number(creditLimit);
              ui->wmessage->setText(message);
              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
              break;
@@ -200,6 +226,7 @@ void MainWindow::on_funbtn7_clicked()
              //3 = Withdraw-valikon painike: 500
              QString message = "";
              bool ret = api->withdrawMoney(500, message);
+             if (creditLimit > 0 && ret) message += "\nCredit Limit: " + QString::number(creditLimit);
              ui->wmessage->setText(message);
              ret ? ui->wmessage->setStyleSheet("QLabel { color:black; }") : ui->wmessage->setStyleSheet("QLabel { color:red; }");
              break;
@@ -224,13 +251,15 @@ void MainWindow::on_funbtn8_clicked()
 
             if (isPINvalid)
             {
-               if (isCredit)
-                  ui->stackedWidget->setCurrentIndex(1);
-               else
-               {
-                  api->saveIdAccount(ui->editCard->text(), false);
-                  ui->stackedWidget->setCurrentIndex(2);
-               }
+                if (isCredit)
+                    ui->stackedWidget->setCurrentIndex(1);
+                else
+                {
+                    double temp = 0;
+                    api->saveIdAccount(ui->editCard->text(), false, temp);
+                    creditLimit = 0;
+                    ui->stackedWidget->setCurrentIndex(2);
+                }
             }
             else if (RetryCount > 0) {              
                 if (message != "") ui->ErrorMessage->setText(message);
@@ -251,6 +280,9 @@ void MainWindow::on_funbtn8_clicked()
             //2 = Päävalikon painike: LOGOUT
             ui->editCard->clear();
             ui->editPIN->clear();
+            ui->ErrorMessage->clear();
+            ui->wmessage->clear();
+            ui->wmessage2->clear();
             ui->stackedWidget->setCurrentIndex(0);
             ui->editCard->setFocus();
             break;
@@ -265,12 +297,26 @@ void MainWindow::on_funbtn8_clicked()
         }
         case 3: {
             //3 = Withdrawal-valikon painike: Other Amount
+            ui->wmessage2->clear();
             ui->stackedWidget->setCurrentIndex(6);
+            break;
+        }
+        case 6: {
+            //6 = Other Amount valikon painike: OK
+            QString message = "";
+            int amount = ui->Amount->text().toInt();
+            if (amount > 0)
+            {
+                bool ret = api->withdrawMoney(ui->Amount->text().toInt(), message);
+                if (creditLimit > 0 && ret) message += "\nCredit Limit: " + QString::number(creditLimit);
+                ui->wmessage2->setText(message);
+                ret ? ui->wmessage2->setStyleSheet("QLabel { color:black; }") : ui->wmessage2->setStyleSheet("QLabel { color:red; }");
+                ui->Amount->clear();
+            }
             break;
         }
    }
 }
-
 
 
 // * Numeronäppäimistö *

@@ -61,11 +61,13 @@ bool bank_api::checkPIN(QString cid, QString PIN, bool& isCredit, QString& messa
 // ** Talletetaan idAccount annetun kortin numeron, sekä mahdollisesti valitun credit-ominaisuuden perusteella **
 // cid = Kortin numero
 // useCredit = true jos credit-ominaisuutta halutaan käyttää, false jos debit-ominaisuutta
+// (ref)creditLimit = Palautettava luottoraja
 // Palauttaa true, jos tehtävä onnistui ja false jos virhe tapahtui
-bool bank_api::saveIdAccount(QString cid, bool useCredit)
+bool bank_api::saveIdAccount(QString cid, bool useCredit, double &creditLimit)
 {
     //Alustukset
     bool ret = false;
+    creditLimit = 0;
 
     // Luodaan sisäinen event loop
     QEventLoop eventLoop;
@@ -94,6 +96,7 @@ bool bank_api::saveIdAccount(QString cid, bool useCredit)
         json = QJsonDocument::fromJson(strReply.toUtf8()).object();
         // Talletetaan idAccount luokan jäsenmuuttujaan
         idAccount = json["idAccount"].toInt();
+        creditLimit = json["CreditLimit"].toDouble();
         ret = true;
     }
     else
@@ -203,10 +206,99 @@ bool bank_api::getTransactions(int page, int itemsPerPage, QStringList &rows, QS
                 totalBalance = QString::number(json["TotalBalance"].toDouble(), 'f', 2);
                 totalPages = json["PagesCount"].toInt();
                 QDateTime dtime = QDateTime::fromString(json["DateTime"].toString(), Qt::ISODateWithMs);
-                rows << dtime.toLocalTime().toString("dd.MM.yy hh:mm") + "\t" + json["Transaction"].toString() + "\t" + QString::number(json["Amount"].toDouble(), 'f', 2) + "€";
+                if(json["Amount"].toDouble() > 0) rows << dtime.toLocalTime().toString("dd.MM.yy hh:mm") + "\t" + json["Transaction"].toString() + "\t" + QString::number(json["Amount"].toDouble(), 'f', 2) + "€";
             }
             rows << "" << "ACCOUNT TOTAL BALANCE: " + totalBalance + "€";
         }
+        ret = true;
+    }
+    else
+    {
+        // Virhe
+        qDebug() << "Error: " << reply->errorString();
+    }
+
+    // Siivotaan ja poistutaan
+    delete reply;
+    reply = nullptr;
+    return ret;
+}
+
+// ** Haetaan tilin haltijan tiedot
+// (ptr)rows = Tapahtumarivit
+// Palauttaa true, jos hakeminen onnistui ja false jos ei onnistunut tai virhe tapahtui
+bool bank_api::getAccountHolder(QStringList &rows)
+{
+    //Alustukset
+    bool ret = false;
+
+    // Luodaan sisäinen event loop
+    QEventLoop eventLoop;
+
+    // Luodaan JSON objekti ja lisätään data
+    QNetworkRequest request(_site_url + "getAccountHolder/" + QString::number(idAccount));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QByteArray data = _credentials.toLocal8Bit().toBase64();
+    QString headerData = "Basic " + data;
+    request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
+    QNetworkAccessManager *mgr  = new QNetworkAccessManager(this);
+
+    // Liitetään finished signaali eventloopin quit slottiin
+    connect(mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+    // Lähetetään pyyntö ja jäädään odottamaan finished signaalia
+    QNetworkReply *reply = mgr->get(request);
+    eventLoop.exec();
+
+    if (reply->error() == QNetworkReply::NoError) {
+        // Virheetön vastaus saatu: Parsitaan tulokset
+        QString strReply = (QString)reply->readAll();
+        QJsonObject json = QJsonDocument::fromJson(strReply.toUtf8()).object();
+        rows << "" << "Account holder:" << "Name: " + json["name"].toString() << "Address: " + json["Address"].toString() << "Phone Number: " + json["PhoneNumber"].toString();
+        ret = true;
+    }
+    else
+    {
+        // Virhe
+        qDebug() << "Error: " << reply->errorString();
+    }
+
+    // Siivotaan ja poistutaan
+    delete reply;
+    reply = nullptr;
+    return ret;
+}
+
+// ** Haetaan kortin haltijan tiedot
+// cid = Kortin numero
+// (ptr)rows = Tapahtumarivit
+// Palauttaa true, jos hakeminen onnistui ja false jos ei onnistunut tai virhe tapahtui
+bool bank_api::getCardHolder(QString cid, QStringList &rows)
+{
+    //Alustukset
+    bool ret = false;
+
+    // Luodaan sisäinen event loop
+    QEventLoop eventLoop;
+
+    // Luodaan JSON objekti ja lisätään data
+    QNetworkRequest request(_site_url + "getCardHolder/" + cid);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QByteArray data = _credentials.toLocal8Bit().toBase64();
+    QString headerData = "Basic " + data;
+    request.setRawHeader( "Authorization", headerData.toLocal8Bit() );
+    QNetworkAccessManager *mgr  = new QNetworkAccessManager(this);
+
+    // Liitetään finished signaali eventloopin quit slottiin
+    connect(mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+    // Lähetetään pyyntö ja jäädään odottamaan finished signaalia
+    QNetworkReply *reply = mgr->get(request);
+    eventLoop.exec();
+
+    if (reply->error() == QNetworkReply::NoError) {
+        // Virheetön vastaus saatu: Parsitaan tulokset
+        QString strReply = (QString)reply->readAll();
+        QJsonObject json = QJsonDocument::fromJson(strReply.toUtf8()).object();
+        rows << "" << "Card holder:" << "Name: " + json["name"].toString() << "Address: " + json["Address"].toString() << "Phone Number: " + json["PhoneNumber"].toString();
         ret = true;
     }
     else

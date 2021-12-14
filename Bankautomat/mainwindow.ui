@@ -402,7 +402,7 @@ background-color: rgb(99, 99, 99);</string>
      <enum>QFrame::Plain</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="LogIn">
      <widget class="QLineEdit" name="editCard">
@@ -788,7 +788,7 @@ background-color: rgb(99, 99, 99);</string>
        <string>BACK</string>
       </property>
      </widget>
-     <widget class="QListWidget" name="listWidget">
+     <widget class="QListWidget" name="listBalance">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -953,7 +953,7 @@ background-color: rgb(99, 99, 99);</string>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>110</x>
         <y>30</y>
         <width>71</width>
         <height>16</height>
@@ -961,16 +961,6 @@ background-color: rgb(99, 99, 99);</string>
       </property>
       <property name="text">
        <string>CLIENT INFO</string>
-      </property>
-     </widget>
-     <widget class="QTextBrowser" name="textBrowser">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>256</width>
-        <height>171</height>
-       </rect>
       </property>
      </widget>
      <widget class="QLabel" name="label_37">
@@ -986,30 +976,14 @@ background-color: rgb(99, 99, 99);</string>
        <string>BACK</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_32">
+     <widget class="QListWidget" name="listInfo">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>120</y>
-        <width>16</width>
-        <height>31</height>
+        <x>10</x>
+        <y>61</y>
+        <width>256</width>
+        <height>181</height>
        </rect>
-      </property>
-      <property name="text">
-       <string>UP</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_33">
-      <property name="geometry">
-       <rect>
-        <x>235</x>
-        <y>240</y>
-        <width>31</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>DOWN</string>
       </property>
      </widget>
     </widget>

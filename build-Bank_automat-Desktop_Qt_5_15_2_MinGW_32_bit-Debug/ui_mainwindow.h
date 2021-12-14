@@ -19,7 +19,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -82,7 +81,7 @@ public:
     QWidget *Balance;
     QLabel *label_27;
     QLabel *label_28;
-    QListWidget *listWidget;
+    QListWidget *listBalance;
     QWidget *Transactions;
     QListWidget *listTransactions;
     QLabel *label_30;
@@ -98,10 +97,8 @@ public:
     QLabel *wmessage2;
     QWidget *ClientInfo;
     QLabel *label_5;
-    QTextBrowser *textBrowser;
     QLabel *label_37;
-    QLabel *label_321;
-    QLabel *label_331;
+    QListWidget *listInfo;
     QLabel *label;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -345,9 +342,9 @@ public:
         label_28 = new QLabel(Balance);
         label_28->setObjectName(QString::fromUtf8("label_28"));
         label_28->setGeometry(QRect(10, 245, 31, 21));
-        listWidget = new QListWidget(Balance);
-        listWidget->setObjectName(QString::fromUtf8("listWidget"));
-        listWidget->setGeometry(QRect(10, 80, 261, 161));
+        listBalance = new QListWidget(Balance);
+        listBalance->setObjectName(QString::fromUtf8("listBalance"));
+        listBalance->setGeometry(QRect(10, 80, 261, 161));
         stackedWidget->addWidget(Balance);
         Transactions = new QWidget();
         Transactions->setObjectName(QString::fromUtf8("Transactions"));
@@ -396,19 +393,13 @@ public:
         ClientInfo->setObjectName(QString::fromUtf8("ClientInfo"));
         label_5 = new QLabel(ClientInfo);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(100, 30, 71, 16));
-        textBrowser = new QTextBrowser(ClientInfo);
-        textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
-        textBrowser->setGeometry(QRect(10, 60, 256, 171));
+        label_5->setGeometry(QRect(110, 30, 71, 16));
         label_37 = new QLabel(ClientInfo);
         label_37->setObjectName(QString::fromUtf8("label_37"));
         label_37->setGeometry(QRect(10, 240, 31, 31));
-        label_321 = new QLabel(ClientInfo);
-        label_321->setObjectName(QString::fromUtf8("label_321"));
-        label_321->setGeometry(QRect(260, 120, 16, 31));
-        label_331 = new QLabel(ClientInfo);
-        label_331->setObjectName(QString::fromUtf8("label_331"));
-        label_331->setGeometry(QRect(235, 240, 31, 31));
+        listInfo = new QListWidget(ClientInfo);
+        listInfo->setObjectName(QString::fromUtf8("listInfo"));
+        listInfo->setGeometry(QRect(10, 61, 256, 181));
         stackedWidget->addWidget(ClientInfo);
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
@@ -427,7 +418,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -492,8 +483,6 @@ public:
         wmessage2->setText(QString());
         label_5->setText(QCoreApplication::translate("MainWindow", "CLIENT INFO", nullptr));
         label_37->setText(QCoreApplication::translate("MainWindow", "BACK", nullptr));
-        label_321->setText(QCoreApplication::translate("MainWindow", "UP", nullptr));
-        label_331->setText(QCoreApplication::translate("MainWindow", "DOWN", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "BANK MIGUELO", nullptr));
     } // retranslateUi
 
